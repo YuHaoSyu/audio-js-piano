@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Audio</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body class="bg-colorful">
+    <div class="">
+      <div class="container" style="font-size: 0.75rem">
+        <div class="row gx-2 text-center">
+          <div class="col-2">
+            <label for="waveform" class="form-label mb-1">WAVEFORM</label>
+            <!-- prettier-ignore -->
+            <input type="range" id="waveform" class="form-range" min="0" max="3" step="1" value="2"/>
+            <div class="row gx-1 justify-content-between">
+              <span class="col-auto">SIN</span>
+              <span class="col-auto">SQR</span>
+              <span class="col-auto">SAW</span>
+              <span class="col-auto">TRI</span>
+            </div>
+          </div>
+          <div class="col-2">
+            <label for="unionwidth" class="form-label mb-1">UNIONWIDTH</label>
+            <!-- prettier-ignore -->
+            <input type="range" id="unionwidth" class="form-range" min="0" max="20" step="1" value="10" oninput="unionwidthResult.value = this.value"/>
+            <output id="unionwidthResult">10</output>
+          </div>
+          <div class="col-3">
+            <fieldset>
+              <legend class="mb-1" style="font-size: 0.75rem">ENVELOPE</legend>
+
+              <div class="row gx-2">
+                <div class="col-2">
+                  <label for="atk" class="form-label mb-1">ATK</label>
+                </div>
+                <div class="col-8">
+                  <!-- prettier-ignore -->
+                  <input type="range" id="atk" class="form-range" min="0" max="2" step="0.1" value="0.2" oninput="atkResult.value = this.value"/>
+                </div>
+                <div class="col-2">
+                  <output id="atkResult">0.2</output>
+                </div>
+              </div>
+
+              <div class="row gx-2">
+                <div class="col-2">
+                  <label for="dec" class="form-label mb-1">DEC</label>
+                </div>
+                <div class="col-8">
+                  <!-- prettier-ignore -->
+                  <input type="range" id="dec" class="form-range" min="0" max="2" step="0.1" value="0" oninput="decResult.value = this.value"/>
+                </div>
+                <div class="col-2">
+                  <output id="decResult">0</output>
+                </div>
+              </div>
+
+              <div class="row gx-2">
+                <div class="col-2">
+                  <label for="sus" class="form-label mb-1">SUS</label>
+                </div>
+                <div class="col-8">
+                  <!-- prettier-ignore -->
+                  <input type="range" id="sus" class="form-range" min="0" max="2" step="0.1" value="1" oninput="susResult.value = this.value"/>
+                </div>
+                <div class="col-2">
+                  <output id="susResult">1</output>
+                </div>
+              </div>
+
+              <div class="row gx-2">
+                <div class="col-2">
+                  <label for="rel" class="form-label mb-1">REL</label>
+                </div>
+                <div class="col-8">
+                  <!-- prettier-ignore -->
+                  <input type="range" id="rel" class="form-range" min="0" max="2" step="0.1" value="0.3" oninput="relResult.value = this.value"/>
+                </div>
+                <div class="col-2">
+                  <output id="relResult">0.3</output>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+    <canvas class="position-absolute" style="bottom: 0" id="piano"></canvas>
+
+    <button type="button" id="osc1">osc1</button>
+    <button type="button" id="osc2">osc2</button>
+    <button type="button" id="osc3">osc3</button>
+    <script src="./js/audio.js"></script>
+  </body>
+</html>

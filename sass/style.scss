@@ -1,0 +1,109 @@
+.bg-brick {
+  --bg1: linear-gradient(335deg, #333, #444 23px, transparent 23px);
+  --bg2: linear-gradient(155deg, #555, #444 23px, transparent 23px);
+  --bg3: linear-gradient(335deg, #800, #900 23px, transparent 23px);
+  --bg4: linear-gradient(155deg, #a00, #900 23px, transparent 23px);
+  --size1: 290px;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #888;
+  background-image: var(--bg3), var(--bg4), var(--bg1), var(--bg2), var(--bg1), var(--bg2);
+  background-size: var(--size1) var(--size1), var(--size1) var(--size1), 58px 58px,
+    58px 58px, 58px 58px, 58px 58px;
+  background-position: 58px 60px, 4px 35px, 0px 2px, 4px 35px, 29px 31px, 34px 6px;
+  /* background-repeat: no-repeat; */
+}
+.bg-colorful {
+  min-height: 100vh;
+  margin: 0;
+
+  --bg3: linear-gradient(
+    90deg,
+    rgba(253, 67, 205, 0.65),
+    transparent,
+    rgba(74, 68, 215, 0.65)
+  );
+  --bg4: linear-gradient(
+    rgba(238, 252, 83, 0.65),
+    transparent,
+    rgba(120, 239, 197, 0.65)
+  );
+
+  background-image: var(--bg3), var(--bg4);
+}
+canvas {
+  display: block;
+}
+div {
+  box-sizing: border-box;
+}
+
+.grid-template {
+  display: grid;
+  margin: 0 -1rem;
+}
+
+$grid-parent: (
+  rows: rows,
+  cols: columns
+);
+$grid-child: (
+  row: row,
+  col: column
+);
+$auto-prop: (
+  auto: auto,
+  min: min-content,
+  max: max-content,
+  fr: minmax(0, 1fr)
+);
+
+@for $i from 1 through 12 {
+  @each $key, $val in $grid-parent {
+    .g-#{$key}-#{$i} {
+      grid-template-#{$val}: repeat($i, minmax(0, 1fr));
+    }
+  }
+}
+
+@each $prop, $val in $auto-prop {
+  @each $dir, $g in $grid-parent {
+    .g-#{$dir}-#{$prop} {
+      grid-auto-#{$g}: $val;
+    }
+  }
+}
+$grid-child-abbr: (
+  r: row,
+  c: column
+);
+@for $i from 1 through 12 {
+  @each $key, $val in $grid-child-abbr {
+    .g#{$key}-#{$i} {
+      grid-#{$val}: span $i / span $i;
+    }
+  }
+}
+
+@for $i from 1 through 12 {
+  @each $key, $val in $grid-child-abbr {
+    @each $dir, $abbr in (start: s, end: e) {
+      .g#{$key}-#{$abbr}-#{$i} {
+        grid-#{$val}-#{$dir}: $i;
+      }
+    }
+  }
+}
+.side-title {
+  background-color: #2b2b2b;
+  padding: 0.5rem;
+  color: #fcc220;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.side-content {
+  margin-top: 0.5rem;
+  background-color: #555;
+  font-size: 1.25rem;
+  color: #efefef;
+}
